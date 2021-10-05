@@ -22,6 +22,7 @@ let svg1 = d3.select('#d3-container')
 
 
 
+
 d3.csv("data/data.csv").then( function(data) {
 
 const groups = data.map(d => d.X)
@@ -56,6 +57,11 @@ g.append("g")
          .attr("text-anchor", "end")
          .text("value");
 
+var div = d3.select("#d3-container").append("div")
+     .attr("class", "tooltip-bar")
+     .style("opacity", 0);
+
+
 g.selectAll(".bar")
          .data(data)
          .enter().append("rect")
@@ -63,7 +69,40 @@ g.selectAll(".bar")
          .attr("x", function(d) { return xScale(d.X); })
          .attr("y", function(d) { return yScale(d.Y); })
          .attr("width", xScale.bandwidth())
-         .attr("height", function(d) { return height - yScale(d.Y); });
+         .attr("height", function(d) { return height - yScale(d.Y);
+     })
+         .on('mouseover', function (d, i) {
+          d3.select(this).transition()
+               .duration('50')
+               .attr('opacity', '.85');
+ 
+          div.transition()
+               .duration(50)
+               .style("opacity", 1);
+        
+
+          div.html("<b>" + i.X + ": " + i.Y)
+          .style("left", d + "px")
+          .style("top", d + "px");
+     })
+         .on('mouseout', function (d, i) {
+             d3.select(this).transition()
+               .duration('50')
+               .attr('opacity', '1');
+          
+          div.transition()
+               .duration('50')
+               .style("opacity", 0);
+     });
 
 
-});
+
+})
+
+function sortFunction() {
+  d3.select("#d3-container")
+    .selectAll("rect")
+    .sort((a,b) => d3.ascending(a.Y, b.Y))
+    .attr("x", (d, i) => i * 20);
+
+};
