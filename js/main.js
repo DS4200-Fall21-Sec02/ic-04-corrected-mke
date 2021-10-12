@@ -41,7 +41,7 @@ var g = svg1.append("g")
 
        
 xScale.domain(data.map(function(d) { return d.X; }));
-yScale.domain([0, d3.max(data, function(d) { return d.Y; })]);
+yScale.domain([0, 100]);
 
 g.append("g")
          .attr("transform", `translate(0, ${height})`)
@@ -68,7 +68,8 @@ g.selectAll(".bar")
          .attr("class", "bar")
          .attr("x", function(d) { return xScale(d.X); })
          .attr("y", function(d) { return yScale(d.Y); })
-         .attr("width", xScale.bandwidth())
+         .attr("width", xScale.bandwidth() + 15)
+         .attr("fill", "#FFA500")
          .attr("height", function(d) { return height - yScale(d.Y);
      })
          .on('mouseover', function (d, i) {
