@@ -98,12 +98,4 @@ g.selectAll(".bar")
 
 
 
-})
-
-function sortFunction() {
-  d3.select("#d3-container")
-    .selectAll("rect")
-    .sort((a,b) => d3.ascending(a.Y, b.Y))
-    .attr("x", (d, i) => i * 20);
-
-};
+});
