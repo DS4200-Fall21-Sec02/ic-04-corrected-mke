@@ -129,3 +129,6 @@ See Canvas for more detail on our academic integrity policy and expectations.
 1. Ensure all functionality required above is present in your GitHub page.
 
 1. Create a PDF that contains the URL of your **GitHub Classroom-generated repository** and **submit it on gradescope via ic-04**. Do not submit a link to a personal repository; your repo must be within our class GitHub organization.
+
+
+Sources: https://medium.com/@kj_schmidt/show-data-on-mouse-over-with-d3-js-3bf598ff8fc2

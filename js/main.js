@@ -58,11 +58,12 @@ g.append("g")
          .text("value");
 
 var div = d3.select("#d3-container").append("div")
-     .attr("class", "tooltip-bar")
-     .style("opacity", 0);
+     .attr("class", "tooltip")
+     .style("opacity", 0)
+     .style("position", "absolute");
 
 
-g.selectAll(".bar")
+g.selectAll("bar")
          .data(data)
          .enter().append("rect")
          .attr("class", "bar")
@@ -83,8 +84,8 @@ g.selectAll(".bar")
         
 
           div.html("<b>" + i.X + ": " + i.Y)
-          .style("left", d + "px")
-          .style("top", d + "px");
+          .style("left", event.x + "px")
+          .style("top", event.y + "px");
      })
          .on('mouseout', function (d, i) {
              d3.select(this).transition()
